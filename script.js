@@ -62,4 +62,4 @@ async function generateCode() {
     document.getElementById("html").value = data.choices[0].text.trim();
     switchTab('html');
   }
-}￼Enter
+}
