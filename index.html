@@ -1,10 +1,11 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Learn with Tracker</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
 </head>
 <body>
   <header>
@@ -15,12 +16,15 @@
     <button onclick="switchTab('html')">HTML</button>
     <button onclick="switchTab('css')">CSS</button>
     <button onclick="switchTab('js')">JavaScript</button>
+    <button onclick="switchTab('python')">Python</button>
   </nav>
 
   <section class="editor">
     <textarea id="html" placeholder="Write HTML here..."></textarea>
     <textarea id="css" placeholder="Write CSS here..."></textarea>
     <textarea id="js" placeholder="Write JavaScript here..."></textarea>
+    <textarea id="python" placeholder="Write Python here..."></textarea>
+
     <div class="btns">
       <button onclick="runCode()">Run</button>
       <button onclick="clearCode()">Clear</button>
@@ -31,10 +35,9 @@
     <iframe id="output"></iframe>
   </section>
 
-  <!-- Online Counter & Countdown Section -->
   <section class="status">
-    <p>People Online: <span id="onlineCount">0</span></p>
-    <p>Website Uptime: <span id="countdownTimer">00:00:00</span></p>
+    <div class="card">Online: <span id="onlineCount">1</span></div>
+    <div class="card">Uptime: <span id="countdownTimer">00:00:00</span></div>
   </section>
 
   <section class="project">
@@ -45,13 +48,13 @@
   <footer>
     <p>Developer: <strong>TRACKER WANGA</strong></p>
     <p>Contact: <a href="mailto:trackerwanga@gmail.com">trackerwanga@gmail.com</a></p>
-    <p>Phone: <a href="https://wa.me/+254758476795">+254758476795 (WhatsApp)</a></p>
+    <p>Phone: <a href="https://wa.me/+254758476795">+254758476795</a></p>
     <p>Follow me on: 
-      <a href="https://x.com/TrackerWanga?t=GTFvve46VE2N7MKwvY_PTQ&s=09">X</a> | 
-      <a href="https://www.instagram.com/tracker.md?igsh=YzljYTk1ODg3Zg==">Instagram</a>
+      <a href="https://x.com/TrackerWanga">X</a> | 
+      <a href="https://www.instagram.com/tracker.md">Instagram</a>
     </p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
-</html>￼Enter
+                                                               </html
