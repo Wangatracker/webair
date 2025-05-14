@@ -1,0 +1,46 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #333;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+.tabs {
+  text-align: center;
+  margin: 10px 0;
+}
+.tabs button {
+  margin: 0.5em;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  display: none;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+textarea.active {
+  display: block;
+}
+iframe {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+.status, .project, footer {
+  padding: 1em;
+}
+.card {
+  margin: 10px 0;
+}
+footer {
+  background: #f1f1f1;
+  font-size: 14px;
+  text-align: center;
+}￼Enter
