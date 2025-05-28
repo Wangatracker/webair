@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Hive Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f1a;
+      color: white;
+      overflow-x: hidden;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #1a1a2e;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .navbar h2 {
+      margin: 0;
+    }
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -220px;
+      width: 220px;
+      height: 100vh;
+      background: #121223;
+      transition: left 0.3s;
+      padding-top: 4rem;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 1rem;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar li:hover {
+      background: #222245;
+    }
+    .main {
+      margin-left: 0;
+      padding: 2rem;
+      transition: margin-left 0.3s;
+    }
+    .sidebar.active ~ .main {
+      margin-left: 220px;
+    }
+    .section {
+      margin-top: 2rem;
+      background: #1a1a2e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.1);
+    }
+    .glow {
+      text-shadow: 0 0 5px cyan;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .input-group input {
+      padding: 0.5rem;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background: cyan;
+      color: #000;
+      cursor: pointer;
+    }
+    .notice {
+      font-style: italic;
+      color: lightgray;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h2 class="glow">Agent Hive</h2>
+    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
+  </div>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li onclick="navigate('home')">🏠 Home</li>
+      <li onclick="navigate('profile')">👤 Profile</li>
+      <li onclick="navigate('tasks')">📝 Tasks</li>
+      <li onclick="navigate('balance')">💰 Balance</li>
+      <li onclick="navigate('referrals')">👥 Referrals</li>
+      <li onclick="navigate('admin')">🛠 Admin</li>
+      <li onclick="logout()">🚪 Logout</li>
+    </ul>
+  </div>
+
+  <div class="main" id="main">
+    <div class="section" id="content">
+      <h2>Welcome back, User <span id="user-id">#0000</span>!</h2>
+      <p class="notice" id="tip">Here's a tip: Complete tasks early to increase your reward chances.</p>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "🔔 New tasks arrive every morning at 8am.",
+      "📢 Refer friends to earn bonuses.",
+      "🚀 The more tasks you complete, the higher your rank.",
+      "📬 Check your profile to update your contact info."
+    ];
+    let index = 0;
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function navigate(section) {
+      const content = document.getElementById("content");
+      if (section === 'home') {
+        content.innerHTML = `
+          <h2>Welcome back, User <span id="user-id">#0000</span>!</h2>
+          <p class="notice" id="tip">${messages[index]}</p>
+        `;
+      } else if (section === 'profile') {
+        content.innerHTML = `
+          <h2>Edit Profile</h2>
+          <div class="input-group">
+            <label>Email:</label><br><input type="email" placeholder="example@mail.com" />
+          </div>
+          <div class="input-group">
+            <label>Phone:</label><br><input type="text" placeholder="+254xxxxxxx" />
+          </div>
+          <div class="input-group">
+            <label>Username:</label><br><input type="text" placeholder="Your username" />
+          </div>
+          <button onclick="alert('Profile updated!')">Update</button>
+        `;
+      } else if (section === 'tasks') {
+        content.innerHTML = `
+          <h2>Your Tasks</h2>
+          <ul>
+            <li>📢 Share a product ad on WhatsApp</li>
+            <li>🔗 Visit and click on 2 promo links</li>
+            <li>👥 Invite 1 new user</li>
+          </ul>
+        `;
+      } else if (section === 'balance') {
+        content.innerHTML = `
+          <h2>Wallet Balance</h2>
+          <p><strong>KES 1,250.00</strong></p>
+          <button onclick="alert('Withdrawal request submitted')">Withdraw</button>
+        `;
+      } else if (section === 'referrals') {
+        content.innerHTML = `
+          <h2>Referral Stats</h2>
+          <p>You have referred <strong>12</strong> people</p>
+          <p>Total earned: <strong>KES 600.00</strong></p>
+        `;
+      } else if (section === 'admin') {
+        const key = prompt("Enter admin passkey:");
+        if (key === "123456") {
+          window.location.href = "admin.html";
+        } else {
+          alert("Incorrect passkey");
+        }
+      }
+    }
+
+    function logout() {
+      alert("You have been logged out.");
+      location.href = "login.html";
+    }
+
+    // Rotate tips every 60 seconds
+    setInterval(() => {
+      index = (index + 1) % messages.length;
+      const tip = document.getElementById("tip");
+      if (tip) tip.textContent = messages[index];
+    }, 60000);
+  </script>
+</body>
+</html>
