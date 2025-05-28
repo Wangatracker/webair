@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICOAds Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f3460, #1a1a2e);
+      color: #fff;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #1a1a2e;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .hamburger {
+      font-size: 28px;
+      cursor: pointer;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #0f3460;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .menu a {
+      display: block;
+      margin: 10px 0;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .menu a:hover {
+      color: #1a73e8;
+    }
+    .container {
+      padding: 2rem;
+    }
+    .welcome-box {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00f2fe;
+      }
+      to {
+        text-shadow: 0 0 20px #ff6ec4, 0 0 30px #00f2fe;
+      }
+    }
+    .section-box {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    }
+    .section-box h2 {
+      margin-top: 0;
+    }
+    .large-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin: 10px;
+      font-size: 18px;
+      background: #1a73e8;
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .large-button:hover {
+      background: #145ab8;
+    }
+    .notification {
+      margin-top: 2rem;
+      font-size: 20px;
+      background: #0f3460;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    #adminBox input {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>ICOAds</h1>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="#" onclick="showSection('profile')">👤 Profile</a>
+      <a href="#" onclick="showSection('tasks')">📝 Tasks</a>
+      <a href="#" onclick="showSection('balance')">💰 Balance</a>
+      <a href="#" onclick="showSection('referrals')">👥 Referrals</a>
+      <a href="#" onclick="showSection('admin')">🔐 Admin</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>  <div class="container">
+    <div class="welcome-box">
+      <h2 id="greeting">Welcome user 562</h2>
+      <p>This is how to get started: locate to the tasks section to view daily jobs. Be quick—jobs are limited!</p>
+    </div><div id="section" class="section-box">
+  <h2>Home</h2>
+  <div class="notification" id="notification"></div>
+</div>
+
+  </div>  <script>
+    const messages = [
+      "📣 New ad campaigns launching soon!",
+      "💼 Withdrawals processed daily at 9PM.",
+      "🎉 Invite friends and earn bonuses!",
+      "⏰ Be the first to grab new tasks!",
+    ];
+    let msgIndex = 0;
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function showSection(section) {
+      const sectionBox = document.getElementById("section");
+      if (section === 'profile') {
+        sectionBox.innerHTML = `
+          <h2>👤 Edit Profile</h2>
+          <p>Email: <input type='text' value='user@email.com'></p>
+          <p>Phone: <input type='text' value='+254...'></p>
+          <p>Username: <input type='text' value='user562'></p>
+          <button class='large-button'>Save Changes</button>
+        `;
+      } else if (section === 'tasks') {
+        sectionBox.innerHTML = `
+          <h2>📝 Daily Tasks</h2>
+          <ul><li>Share this week’s campaign ad</li><li>Refer 2 users</li><li>Click 3 sponsored links</li></ul>
+        `;
+      } else if (section === 'balance') {
+        sectionBox.innerHTML = `
+          <h2>💰 Wallet</h2>
+          <p>Balance: <strong>KES 1,250</strong></p>
+          <button class='large-button'>Withdraw</button>
+        `;
+      } else if (section === 'referrals') {
+        sectionBox.innerHTML = `
+          <h2>👥 Referrals</h2>
+          <p>15 referrals earned you KES 750</p>
+          <button class='large-button'>Share Referral Link</button>
+        `;
+      } else if (section === 'admin') {
+        sectionBox.innerHTML = `
+          <h2>🔐 Admin Access</h2>
+          <div id="adminBox">
+            <p>Enter passkey:</p>
+            <input id="adminKey" type="password" placeholder="Enter passkey">
+            <button class='large-button' onclick="verifyAdmin()">Access</button>
+          </div>
+        `;
+      }
+    }
+
+    function verifyAdmin() {
+      const key = document.getElementById("adminKey").value;
+      if (key === "123456") {
+        window.location.href = "admin-dashboard.html";
+      } else {
+        alert("Incorrect passkey");
+      }
+    }
+
+    function logout() {
+      window.location.href = "login.html";
+    }
+
+    function rotateMessages() {
+      const noteBox = document.getElementById("notification");
+      noteBox.textContent = messages[msgIndex];
+      msgIndex = (msgIndex + 1) % messages.length;
+    }
+
+    rotateMessages();
+    setInterval(rotateMessages, 3600000); // Change every hour
+  </script></body>
+</html>
