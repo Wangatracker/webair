@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Hive - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="container dashboard-container">
+        <header>
+            <h1>Agent Hive Dashboard</h1>
+        </header>
+
+        <!-- Content to show when user is signed in -->
+        <div id="dashboard-content" style="display: none;"> <!-- Hidden by default, shown by JS -->
+            <h2>Agent Profile</h2>
+            <div id="user-info">
+                <!-- User info will be loaded here by dashboard.js -->
+                Loading user info...
+            </div>
+
+            <button id="sign-out-button" class="btn">Sign Out</button>
+
+            <!-- Add more dashboard content here as your app grows -->
+
+        </div>
+
+        <!-- Message for when user is not signed in (handled by redirect in JS) -->
+        <!-- <p id="status-message" class="status-message"></p> -->
+        <!-- The dashboard page doesn't typically need a status message like the auth page -->
+
+    </div>
+
+    <!-- Link your JavaScript file(s) here -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
