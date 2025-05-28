@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICOAds Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #1a1a2e, #0f3460);
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      padding: 1rem;
+      background-color: #16213e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .hamburger {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .menu {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: #0f3460;
+      width: 200px;
+      border-left: 3px solid #1a73e8;
+      display: none;
+      flex-direction: column;
+    }
+    .menu a {
+      padding: 1rem;
+      text-decoration: none;
+      color: white;
+      border-bottom: 1px solid #1a1a2e;
+      transition: background 0.3s;
+    }
+    .menu a:hover {
+      background: #1a73e8;
+    }
+    .content {
+      padding: 2rem;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .admin-section {
+      margin-top: 2rem;
+      display: none;
+    }
+    input[type="password"] {
+      padding: 0.5rem;
+      width: 200px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .glow {
+      text-shadow: 0 0 10px #00f7ff;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 class="glow">Welcome to ICOAds Africa</h2>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </header>  <nav class="menu" id="menu">
+    <a href="#" onclick="showSection('home')">🏠 Home</a>
+    <a href="#" onclick="showSection('tasks')">📝 Tasks</a>
+    <a href="#" onclick="showSection('balance')">💰 Balance</a>
+    <a href="#" onclick="showSection('referrals')">👥 Referrals</a>
+    <a href="#" onclick="showSection('profile')">👤 Profile</a>
+    <a href="#" onclick="showAdmin()">🛠 Admin</a>
+    <a href="#" onclick="logout()">🚪 Logout</a>
+  </nav>  <section class="content" id="mainContent">
+    <h3>Hello user #<span id="randomID"></span> 👋</h3>
+    <p>This is your dashboard. Here’s how to get started:</p>
+    <ul>
+      <li>Go to the <strong>Tasks</strong> section to see daily job updates.</li>
+      <li>Be early – jobs are limited and given to the fastest agents.</li>
+      <li>Track your <strong>balance</strong> and <strong>referrals</strong> anytime.</li>
+      <li>Update your <strong>profile</strong> if needed.</li>
+    </ul>
+    <p>🚀 Good luck and earn wisely!</p><div class="admin-section" id="adminSection">
+  <h4>Admin Panel</h4>
+  <textarea rows="4" cols="50" placeholder="Type job/task here..."></textarea><br><br>
+  <button onclick="alert('Task posted successfully')">Post Task</button>
+</div>
+
+  </section>  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function showSection(section) {
+      const content = document.getElementById("mainContent");
+      let html = '';
+      if (section === 'home') {
+        html = `
+          <h3>Welcome Back 👋</h3>
+          <p>Get started with tasks or check your balance.</p>
+        `;
+      } else if (section === 'tasks') {
+        html = `
+          <h3>Today's Tasks</h3>
+          <ul>
+            <li>✅ Share a promo link</li>
+            <li>✅ Invite 2 friends</li>
+            <li>⏳ Watch an ad</li>
+          </ul>
+        `;
+      } else if (section === 'balance') {
+        html = `
+          <h3>Your Wallet</h3>
+          <p>Current Balance: <strong>KES 0.00</strong></p>
+          <button onclick="alert('Withdrawal requested')">Withdraw</button>
+        `;
+      } else if (section === 'referrals') {
+        html = `
+          <h3>Your Referrals</h3>
+          <p>You've invited <strong>0 users</strong>.</p>
+        `;
+      } else if (section === 'profile') {
+        html = `
+          <h3>Your Profile</h3>
+          <p>Name: Elijah Wanga</p>
+          <p>Email: trackerwanga@gmail.com</p>
+          <p>Phone: +254758476795</p>
+        `;
+      }
+      content.innerHTML = html;
+    }
+
+    function showAdmin() {
+      const passkey = prompt("Enter Admin Passkey:");
+      if (passkey === "123456") {
+        document.getElementById("mainContent").innerHTML = document.getElementById("mainContent").innerHTML + document.getElementById("adminSection").outerHTML;
+        document.getElementById("adminSection").style.display = "block";
+      } else {
+        alert("Incorrect passkey.");
+      }
+    }
+
+    function logout() {
+      alert("Logged out successfully.");
+      window.location.href = 'login.html';
+    }
+
+    // Assign random user ID
+    document.getElementById("randomID").innerText = Math.floor(Math.random() * 1000 + 1);
+  </script></body>
+</html>
