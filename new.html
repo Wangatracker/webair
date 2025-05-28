@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICOAds Africa</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js" type="module"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to ICOAds Africa</h1>
+    <div id="auth-section">
+      <div id="signup-form" class="form-box">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-name" placeholder="Full Name" />
+        <input type="email" id="signup-email" placeholder="Email" />
+        <input type="text" id="signup-phone" placeholder="Phone (+254...)" />
+        <input type="text" id="signup-whatsapp" placeholder="WhatsApp Number" />
+        <input type="text" id="signup-username" placeholder="Username" />
+        <input type="text" id="signup-country" placeholder="Country" />
+        <input type="text" id="signup-county" placeholder="County" />
+        <input type="password" id="signup-password" placeholder="Password" />
+        <button onclick="signUp()">Sign Up</button>
+      </div>
+
+      <div id="login-form" class="form-box">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+      </div>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <h2 id="welcome-msg">Welcome, User</h2>
+      <p>This is how to get started: locate tasks and complete them before they are taken. Good luck!</p>
+      <nav>
+        <button onclick="showSection('tasks')">Tasks</button>
+        <button onclick="showSection('profile')">Profile</button>
+        <button onclick="showSection('admin')">Admin</button>
+      </nav>
+      <div id="tasks" class="section">Daily tasks will appear here.</div>
+      <div id="profile" class="section">Your profile details.</div>
+      <div id="admin" class="section">
+        <h3>Admin Panel</h3>
+        <input type="password" id="admin-key" placeholder="Enter Passkey" />
+        <button onclick="accessAdmin()">Access</button>
+        <div id="admin-panel" class="hidden">
+          <textarea placeholder="Type task here..."></textarea>
+          <button>Post Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
