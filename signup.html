@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | ICO Ads Africa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f3057, #1f1f2f);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h2 {
+      text-shadow: 0 0 10px #1a73e8;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #1a73e8;
+      width: 90%;
+      max-width: 450px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0f52ba;
+    }
+
+    .link {
+      color: #ccc;
+      margin-top: 1em;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Create Your Agent Account</h2>
+
+  <form id="signupForm">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number (e.g. +254712345678)" required>
+    <input type="tel" placeholder="WhatsApp Number" required>
+    <input type="text" placeholder="Country" required>
+    <input type="text" placeholder="County" required>
+    <input type="text" placeholder="Promo Code (Optional)">
+    <input type="number" placeholder="Age" required>
+    <input type="text" placeholder="Type 'I am human'" required>
+    <button type="submit" class="btn">Register</button>
+  </form>
+
+  <a href="index.html" class="link">← Back to Homepage</a>
+  <a href="login.html" class="link">Already have an account? Login</a>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Signup successful! You'll now be redirected to login.");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
