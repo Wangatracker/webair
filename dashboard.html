@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .navbar {
+      background: #1e293b;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      color: #38bdf8;
+    }
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background: #1e293b;
+      padding-top: 2rem;
+      position: fixed;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar li:hover {
+      background: #334155;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 2rem;
+    }
+    .welcome {
+      margin-bottom: 2rem;
+    }
+    .notification-box {
+      background: #334155;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #38bdf8; }
+      to { box-shadow: 0 0 20px #0ea5e9; }
+    }
+    .section {
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      background: #38bdf8;
+      color: #0f172a;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #0ea5e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Agent Hive</h1>
+    <button class="btn" onclick="redirectAdmin()">Admin</button>
+  </div>  <div class="sidebar">
+    <ul>
+      <li onclick="showSection('profile')">👤 Profile</li>
+      <li onclick="showSection('tasks')">📝 Daily Tasks</li>
+      <li onclick="showSection('wallet')">💰 Wallet</li>
+      <li onclick="showSection('referrals')">👥 Referrals</li>
+      <li onclick="showSection('support')">📨 Contact Support</li>
+      <li onclick="logout()">🚪 Logout</li>
+    </ul>
+  </div>  <div class="main">
+    <div class="welcome">
+      <h2>Welcome Elijah</h2>
+      <p>Select a section from the sidebar to begin.</p>
+    </div><div class="notification-box" id="notification">
+  Loading latest announcements...
+</div>
+
+<div id="section-content"></div>
+
+  </div>  <script>
+    const defaultMessages = [
+      "Welcome to Agent Hive, your digital workspace!",
+      "Daily tasks earn you real cash. Check your Tasks tab!",
+      "Invite friends using your referral code to earn bonuses.",
+      "Having issues? Reach out using 'Contact Support'.",
+      "Stay active daily to unlock exclusive rewards."
+    ];
+    let msgIndex = 0;
+    const notif = document.getElementById("notification");
+    setInterval(() => {
+      notif.textContent = defaultMessages[msgIndex];
+      msgIndex = (msgIndex + 1) % defaultMessages.length;
+    }, 10000);
+
+    function showSection(section) {
+      const content = document.getElementById("section-content");
+      if (section === 'profile') {
+        content.innerHTML = `
+          <div class="section">
+            <h3>Your Profile</h3>
+            <p>Name: Elijah Wanga</p>
+            <p>Email: trackerwanga@gmail.com</p>
+            <p>Phone: +254758476795</p>
+            <p>Username: elijahagent</p>
+          </div>`;
+      } else if (section === 'tasks') {
+        content.innerHTML = `
+          <div class="section">
+            <h3>Today's Tasks</h3>
+            <ul>
+              <li>✅ Share one ad to WhatsApp</li>
+              <li>❌ Watch 3 partner ads</li>
+              <li>❌ Invite a new user</li>
+            </ul>
+          </div>`;
+      } else if (section === 'wallet') {
+        content.innerHTML = `
+          <div class="section">
+            <h3>Wallet Balance</h3>
+            <p>KES 1,250.00</p>
+            <button class="btn">Withdraw</button>
+          </div>`;
+      } else if (section === 'referrals') {
+        content.innerHTML = `
+          <div class="section">
+            <h3>Referrals</h3>
+            <p>Total Invites: 18</p>
+            <p>Referral Code: <strong>ELIJAH2025</strong></p>
+            <button class="btn">Share Code</button>
+          </div>`;
+      } else if (section === 'support') {
+        content.innerHTML = `
+          <div class="section">
+            <h3>Contact Support</h3>
+            <textarea placeholder="Type your message here..." style="width:100%;height:100px;"></textarea><br><br>
+        <button class="btn">Send Message</button>
+      </div>`;
+  }
+}
+
+function logout() {
+  alert("You have been logged out.");
+  window.location.href = "/index.html";
+}
+
+function redirectAdmin() {
+  const pass = prompt("Enter Admin Passkey:");
+  if (pass === "624973") {
+    window.location.href = "/admin.html";
+  } else {
+    alert("Incorrect passkey.");
+  }
+}
+
+  </script>
+</body>
+</html>
