@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #000000, #0f2027);
+      color: #fff;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: rgba(0,0,0,0.4);
+      padding: 1em;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar h3 {
+      color: #00f7ff;
+      margin-bottom: 1em;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 10px 0;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: #1a73e8;
+    }
+
+    .main {
+      margin-left: 240px;
+      padding: 2em;
+      flex-grow: 1;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 1em;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #1a73e8;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .uploads input {
+      background: #fff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h3>Admin Panel</h3>
+    <a href="#">Dashboard</a>
+    <a href="#">Agents</a>
+    <a href="#">Promoters</a>
+    <a href="#">Uploads</a>
+  </div>
+
+  <div class="main">
+    <div class="card">
+      <h2>Post Announcement</h2>
+      <textarea id="adminMessage" rows="4" placeholder="Type your announcement here..."></textarea>
+      <button onclick="sendAnnouncement()">Send to Agents</button>
+    </div>
+
+    <div class="card uploads">
+      <h2>Upload Media</h2>
+      <input type="file" multiple />
+    </div>
+
+    <div class="card">
+      <h2>Admin Tools</h2>
+      <p>View and verify withdrawals, monitor agent activity, and check support requests.</p>
+    </div>
+  </div>
+
+  <script>
+    function sendAnnouncement() {
+      const msg = document.getElementById("adminMessage").value;
+      if (msg.trim() === "") {
+        alert("Please type a message.");
+        return;
+      }
+      alert("Announcement sent to agents: \n" + msg);
+      document.getElementById("adminMessage").value = "";
+    }
+  </script>
+</body>
+</html>
