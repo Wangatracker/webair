@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | ICO Ads Africa</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h2>Create Your Agent Account</h2>
+
+  <form id="signupForm">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="tel" placeholder="WhatsApp Number" required>
+    <input type="text" placeholder="Country" required>
+    <input type="text" placeholder="County" required>
+    <input type="text" placeholder="Promo Code (Optional)">
+    <input type="number" placeholder="Age" required>
+    <input type="text" placeholder="Type 'I am human'" required>
+    <div class="captcha">🌀 Rotate & Tick</div>
+    <button type="submit" class="btn">Register</button>
+  </form>
+
+  <a href="index.html" class="link">← Back to Homepage</a>
+  <a href="login.html" class="link">Already have an account? Login</a>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Signup successful! Redirecting to dashboard...");
+      window.location.href = "dashboard.html";
+    });
+  </script>
+
+</body>
+</html>
