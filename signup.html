@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | ICO Ads Africa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f3057, #1f1f2f);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #1a73e8;
+      width: 95%;
+      max-width: 450px;
+    }
+
+    h2 {
+      text-align: center;
+      text-shadow: 0 0 10px #1a73e8;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    canvas {
+      background: #fff;
+      display: block;
+      margin: 10px 0;
+      border-radius: 6px;
+    }
+
+    .btn, .reload {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover, .reload:hover {
+      background-color: #0f52ba;
+    }
+
+    .link {
+      color: #ccc;
+      text-align: center;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="signupForm">
+    <h2>Agent Sign Up</h2>
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="tel" placeholder="WhatsApp Number" required>
+    <input type="text" placeholder="Country" required>
+    <input type="text" placeholder="County" required>
+    <input type="text" placeholder="Promo Code (Optional)">
+    <input type="number" placeholder="Age" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+    <canvas id="captchaCanvas" width="200" height="50"></canvas>
+    <input type="text" id="captchaInput" placeholder="Enter CAPTCHA" required>
+    <button type="button" class="reload" onclick="generateCaptcha()">↻ Reload CAPTCHA</button>
+
+    <p class="error" id="errorText"></p>
+    <button type="submit" class="btn">Register</button>
+    <a class="link" href="login.html">Already have an account? Login</a>
+  </form>
+
+  <script>
+    let currentCaptcha = '';
+
+    function generateCaptcha() {
+      const canvas = document.getElementById('captchaCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff";
+      ctx.font = "30px Arial";
+      currentCaptcha = '';
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      for (let i = 0; i < 6; i++) {
+        const char = chars.charAt(Math.floor(Math.random() * chars.length));
+        currentCaptcha += char;
+        const x = 20 + i * 28;
+        const y = 35 + Math.random() * 10;
+        const angle = Math.random() * 0.5 - 0.25;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.fillText(char, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    generateCaptcha();
+
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const captchaInput = document.getElementById('captchaInput').value.toUpperCase();
+      const errorText = document.getElementById('errorText');
+
+      if (password !== confirmPassword) {
+        errorText.textContent = "Passwords do not match!";
+        return;
+      }
+
+      if (captchaInput !== currentCaptcha) {
+        errorText.textContent = "Incorrect CAPTCHA. Try again.";
+        generateCaptcha();
+        return;
+      }
+
+      errorText.textContent = '';
+      alert("Signup successful! Redirecting to dashboard...");
+      window.location.href = "dashboard.html";
+    });
+  </script>
+
+</body>
+</html>
