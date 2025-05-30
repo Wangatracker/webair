@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edu Sync Hub Africa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6b48ff, #00ddeb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      color: #333;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .card h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      font-weight: bold;
+      color: #6b48ff;
+      margin-bottom: 25px;
+      height: 24px;
+    }
+
+    .glow-button {
+      background: #6b48ff;
+      color: white;
+      padding: 12px 24px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 15px #00ddeb, 0 0 30px #6b48ff;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Welcome to Edu Sync Hub Africa</h1>
+    <div class="tagline" id="tagline">Empowering...</div>
+    <a href="signup.html"><button class="glow-button">Sign Up</button></a>
+    <a href="login.html"><button class="glow-button">Log In</button></a>
+  </div>
+
+  <div class="footer">© 2025 Edu Sync Hub Africa</div>
+
+  <script>
+    const phrases = [
+      "Dreams that lead futures...",
+      "Talents that change the world...",
+      "Ideas worth growing...",
+      "Brains with big visions...",
+      "Careers that start small...",
+      "Innovation begins here...",
+      "Passion that guides purpose...",
+      "Education beyond limits..."
+    ];
+
+    let index = 0;
+    const taglineEl = document.getElementById("tagline");
+
+    setInterval(() => {
+      taglineEl.textContent = phrases[index];
+      index = (index + 1) % phrases.length;
+    }, 2000);
+  </script>
+</body>
+</html>
