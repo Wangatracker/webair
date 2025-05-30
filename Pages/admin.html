@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h3>Admin Dashboard</h3>
+    <a href="#payments">Payment Requests</a>
+    <a href="#users">Manage Users</a>
+    <a href="#notifications">Send Notifications</a>
+  </div>
+  <div class="content">
+    <div class="card">
+      <h2>Admin Panel</h2>
+      <h3>Payment Requests</h3>
+      <table id="payment-table"></table>
+    </div>
+  </div>
+  <script type="module">
+    import { approvePayment } from "../js/payment.js";
+    window.approvePayment = approvePayment; // Make function globally available
+  </script>
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>
