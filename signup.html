@@ -22,22 +22,16 @@
     </form>
   </div>
   <script type="module" src="js/signup.js"></script>
-</body>
-</html>
-<body>
   <script type="module">
   import { signUp } from "../js/auth.js";
-
-  document.getElementById("signup-form").addEventListener("submit", (e) => {
+document.getElementById("signup-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const role = document.getElementById("role").value;
     signUp(email, password, role);
   });
-</script>
-</body>
-<body>
   <script type="module" src="../js/firebase.js"></script>
 <script type="module" src="../js/auth.js"></script>
 </body>
+</html>
