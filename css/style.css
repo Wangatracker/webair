@@ -1,0 +1,38 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6b48ff, #00ddeb);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  background: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+}
+.glow-button {
+  background: #6b48ff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+.glow-button:hover {
+  box-shadow: 0 0 10px #00ddeb, 0 0 20px #6b48ff;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
