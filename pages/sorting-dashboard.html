@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edu Sync Hub Africa - Sorting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6b48ff, #00ddeb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    .container {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #6b48ff;
+      margin-bottom: 10px;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #6b48ff;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      box-shadow: 0 0 10px #00ddeb, 0 0 20px #6b48ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to Edu Sync Hub Africa</h2>
+    <p>Aligning your <strong>dreams</strong>, <strong>talents</strong> & <strong>learning</strong></p>
+    <form id="sort-form">
+      <input type="text" id="fullname" placeholder="Full Name" required />
+      <input type="text" id="school" placeholder="School Name" required />
+      <input type="text" id="county" placeholder="County" required />
+      <select id="level" required>
+        <option value="" disabled selected>Select Learning Level</option>
+        <option value="primary">Primary Student</option>
+        <option value="junior">Junior High Student</option>
+        <option value="high">High School Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+      </select>
+      <input type="text" id="talent" placeholder="Your Talent (e.g. Singing, Coding...)" required />
+      <input type="text" id="career" placeholder="Your Dream Career" required />
+      <button type="submit">Continue to My Dashboard</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("sort-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const level = document.getElementById("level").value;
+
+      // Redirect based on user type
+      if (level === "primary" || level === "junior" || level === "high") {
+        window.location.href = "student-dashboard.html";
+      } else if (level === "teacher") {
+        window.location.href = "teacher-dashboard.html";
+      } else if (level === "admin") {
+        // For admin, maybe approval is needed first — for now, redirect
+        window.location.href = "admin-dashboard.html";
+      } else {
+        alert("Please select a valid learning level.");
+      }
+    });
+  </script>
+</body>
+</html>
