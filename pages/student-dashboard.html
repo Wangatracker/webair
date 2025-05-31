@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f3f4f6;
+    }
+    .topbar {
+      background: #6b48ff;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+    .sidebar {
+      background: #1a1a3d;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      transition: left 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 15px 20px;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: #6b48ff;
+    }
+    .content {
+      margin-left: 0;
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="hamburger" onclick="toggleSidebar()">☰</div>
+    <h2>Welcome, <span id="username">Student</span></h2>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="showSection('profile')">Profile</a>
+    <a href="#" onclick="showSection('diary')">My Diary</a>
+    <a href="#" onclick="showSection('schedule')">My Schedule</a>
+    <a href="#" onclick="showSection('assignments')">Assignments</a>
+    <a href="#" onclick="showSection('askai')">Ask AI</a>
+    <a href="#" onclick="showSection('career')">Career Plan</a>
+    <a href="#" onclick="showSection('funstudy')">Fun Study</a>
+    <a href="#" onclick="showSection('chat')">Chat</a>
+    <a href="#" onclick="showSection('upload')">Upload Files</a>
+    <a href="#" onclick="showSection('premium')">Premium Features</a>
+    <a href="#">Log Out</a>
+  </div>
+
+  <div class="content">
+    <div id="profile" class="section active"><h3>Profile</h3><p>User details go here...</p></div>
+    <div id="diary" class="section"><h3>My Diary</h3><textarea rows="6" style="width:100%"></textarea></div>
+    <div id="schedule" class="section"><h3>My Schedule</h3><p>Weekly planner...</p></div>
+    <div id="assignments" class="section"><h3>Assignments</h3><p>Uploaded assignments...</p></div>
+    <div id="askai" class="section"><h3>Ask AI</h3><p>Ask a question...</p></div>
+    <div id="career" class="section"><h3>Career Plan</h3><p>Dream career tools...</p></div>
+    <div id="funstudy" class="section"><h3>Fun Study</h3><p>Games & learning challenges...</p></div>
+    <div id="chat" class="section"><h3>Chat</h3><p>Chat with others...</p></div>
+    <div id="upload" class="section"><h3>Upload Files</h3><input type="file" /></div>
+    <div id="premium" class="section"><h3>Premium Features</h3><p>Access advanced tools (AI, PDFs, etc)...</p></div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
