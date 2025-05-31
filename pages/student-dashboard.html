@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+  <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  <div class="sidebar" id="sidebar">
+    <h2>Dashboard</h2>
+    <a href="#" onclick="showSection('profile')">👤 Profile</a>
+    <a href="#" onclick="showSection('checkpoints')">📌 Check Points</a>
+    <a href="#" onclick="showSection('diary')">📓 My Diary</a>
+    <a href="#" onclick="showSection('schedule')">📅 My Schedule</a>
+    <a href="#" onclick="showSection('assignments')">📁 Assignments</a>
+    <a href="#" onclick="showSection('ai')">🤖 Ask AI</a>
+    <a href="#" onclick="showSection('career')">🚀 Career Plan</a>
+    <a href="#" onclick="showSection('talent')">✨ Talent Strategy</a>
+    <a href="#" onclick="showSection('fun')">🎉 Fun Study</a>
+    <a href="#" onclick="showSection('chat')">💬 Chat & Contact</a>
+    <a href="../login.html">🚪 Logout</a>
+  </div>
+  <div class="content" id="main-content">
+    <div class="welcome" id="welcome-msg">Welcome, <span id="username">Student</span>!</div>
+    <div class="section" id="profile"><h3>👤 Profile</h3><p>Username: <span id="user-username"></span></p></div>
+    <div class="section" id="checkpoints"><h3>📌 Check Points</h3></div>
+    <div class="section" id="diary"><h3>📓 My Diary</h3><textarea placeholder="Write your diary..."></textarea></div>
+    <div class="section" id="schedule"><h3>📅 My Schedule</h3></div>
+    <div class="section" id="assignments"><h3>📁 Assignments</h3></div>
+    <div class="section" id="ai"><h3>🤖 Ask AI</h3></div>
+    <div class="section" id="career"><h3>🚀 Career Plan</h3></div>
+    <div class="section" id="talent"><h3>✨ Talent Strategy</h3></div>
+    <div class="section" id="fun"><h3>🎉 Fun Study</h3></div>
+    <div class="section" id="chat"><h3>💬 Chat & Contact</h3></div>
+  </div>
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>
