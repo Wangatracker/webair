@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edu Sync Hub - Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      background: linear-gradient(to right, #6b48ff, #00ddeb);
+      min-height: 100vh;
+      color: #fff;
+    }
+    .sidebar {
+      width: 240px;
+      background: #1a1a3d;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+    }
+    .sidebar h2 {
+      text-align: center;
+      color: #00ddeb;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 10px;
+      margin-top: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .sidebar a:hover {
+      background-color: #6b48ff;
+    }
+    .content {
+      margin-left: 260px;
+      padding: 20px;
+      flex: 1;
+    }
+    .card {
+      background: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+    .glow-button {
+      background: #6b48ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .glow-button:hover {
+      box-shadow: 0 0 10px #00ddeb, 0 0 20px #6b48ff;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Student</h2>
+    <a href="#">👤 Profile</a>
+    <a href="#">📌 Check Points</a>
+    <a href="#">📓 My Diary</a>
+    <a href="#">📅 My Schedule</a>
+    <a href="#">📁 Assignments</a>
+    <a href="#">🤖 Ask AI</a>
+    <a href="#">🚀 Career Plan</a>
+    <a href="#">✨ Talent Strategy</a>
+    <a href="#">🎉 Fun Study</a>
+    <a href="#">💬 Chat & Contact</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+  <div class="content">
+    <div class="card">
+      <h2>Welcome, <span id="username">Student</span>!</h2>
+      <p>This is your dashboard. Check your updates, learn, and grow daily!</p>
+      <div class="card" style="background:#f9f9f9;">
+        <h3>🔔 Notifications</h3>
+        <p id="notif">No new notifications yet...</p>
+      </div>
+      <div class="card" style="background:#f9f9f9;">
+        <h3>💡 Did You Know?</h3>
+        <p id="fact">Fetching today's AI fact...</p>
+      </div>
+    </div>
+  </div>  <script type="module">
+    import { auth, db } from "../js/firebase.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          document.getElementById("username").textContent = data.username || data.email;
+          document.getElementById("notif").textContent = "Welcome back, " + (data.username || data.email) + "!";
+          document.getElementById("fact").textContent = "Did you know? The brain uses 20% of the body's energy!";
+        }
+      } else {
+        window.location.href = "../login.html";
+      }
+    });
+  </script></body>
+</html>
