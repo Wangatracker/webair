@@ -104,5 +104,54 @@
       }
     });
   </script>
+  <script type="module">
+  import { auth, db } from "../js/firebase.js";
+  import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+  document.getElementById("sort-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("You must be logged in.");
+      return window.location.href = "../login.html";
+    }
+
+    const uid = user.uid;
+    const fullname = document.getElementById("fullname").value;
+    const school = document.getElementById("school").value;
+    const county = document.getElementById("county").value;
+    const level = document.getElementById("level").value;
+    const talent = document.getElementById("talent").value;
+    const career = document.getElementById("career").value;
+
+    try {
+      await setDoc(doc(db, "users", uid), {
+        fullname,
+        school,
+        county,
+        level,
+        talent,
+        career,
+        updatedAt: new Date()
+      });
+
+      // Redirect based on role
+      if (level === "primary" || level === "junior" || level === "high") {
+        window.location.href = "student-dashboard.html";
+      } else if (level === "teacher") {
+        window.location.href = "teacher-dashboard.html";
+      } else if (level === "admin") {
+        window.location.href = "admin-dashboard.html";
+      } else {
+        alert("Unknown level selected.");
+      }
+    } catch (error) {
+      console.error("Error saving data:", error);
+      alert("Failed to save user data.");
+    }
+  });
+  </script>
 </body>
 </html>
