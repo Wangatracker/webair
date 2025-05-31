@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edu Sync Hub - Signup</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #6b48ff, #00ddeb);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #6b48ff;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .glow-button {
+      background: #6b48ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    .glow-button:hover {
+      box-shadow: 0 0 12px #00ddeb;
+    }
+    .switch {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .switch a {
+      color: #6b48ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create Account</h2>
+    <form id="signup-form">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="country" placeholder="Country" required>
+      <input type="text" id="county" placeholder="County" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="text" id="referral" placeholder="Referral Code (optional)">
+      <button type="submit" class="glow-button">Sign Up</button>
+    </form>
+    <div class="switch">
+      Already have an account? <a href="login.html">Log In</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Firebase import and config
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcqZKghgyzk1ghfP-l8dwlHOVRNeG1TAk",
+      authDomain: "edu-sync-hub-africa.firebaseapp.com",
+      projectId: "edu-sync-hub-africa",
+      storageBucket: "edu-sync-hub-africa.appspot.com",
+      messagingSenderId: "625120725619",
+      appId: "1:625120725619:web:0a373d5201cd9a87333806"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("signup-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = form.email.value;
+      const password = form.password.value;
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+          name: form.name.value,
+          username: form.username.value,
+          email: email,
+          phone: form.phone.value,
+          country: form.country.value,
+          county: form.county.value,
+          referral: form.referral.value,
+          createdAt: new Date()
+        });
+
+        alert("Signup successful!");
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        alert("Signup failed: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
